@@ -7,27 +7,26 @@
   client.onConnectionLost = onConnectionLost;
   client.onMessageArrived = onMessageArrived;
   var options = {
-   useSSL: false,
-    userName: "licha_05reyes@outlook.com",
-    password: "Galapagos1001",
+    useSSL: false,
+    userName: "jomsk@hotmail.com",
+    password: "Jomsk4all1996",
     onSuccess:onConnect,
     onFailure:doFail
   }
-
+  
   // connect the client
   client.connect(options);
-   
+    
   // called when the client connects
   function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
     console.log("Conectado...");
-	
-    client.subscribe("licha_05reyes@outlook.com/IoT");
-    message = new Paho.MQTT.Message("hola desde la web");
-    message.destinationName = "licha_05reyes@outlook.com/IoT1";
-    client.send(message);
-	
+  
+    client.subscribe("jomsk@hotmail.com/IoT");
+  
+  
   }
+
 
   function doFail(e){
     console.log(e);
@@ -43,16 +42,24 @@
 
   // called when a message arrives
   function onMessageArrived(message) {
-    var led1=document.getElementById("Sensor").innerHTML
-    var led2=document.getElementById("Sensor1").innerHTML
+    var le=document.getElementById("Sensor");
+    var l=document.getElementById("Sensor1");
     console.log("onMessageArrived:"+message.payloadString);
-    variables=(message.payloadString).split(("/"))
-    led1=variables[0];
-    led2=variables[1];
+    variables=(message.payloadString).split(("/"));
+    if(variables[0]=="on"){
+      le.innerHTML="on";
+    }else{
+      le.innerHTML="off";
+    }
+    if(variables[1]=="on"){
+      l.innerHTML="on";
+    }else{
+      l.innerHTML="off";
+    }
   }
 
   function mostrard(){
-    var dat=document.getElementById("info").innerHTML;
+    var dat=document.getElementById("info");
     dat=variables[2];
   }
   
