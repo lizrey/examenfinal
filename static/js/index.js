@@ -8,8 +8,8 @@
   client.onMessageArrived = onMessageArrived;
   var options = {
    useSSL: false,
-    userName: "jomsk@hotmail.com",
-    password: "Jomsk4all1996",
+    userName: "licha_05reyes@outlook.com",
+    password: "Galapagos1001",
     onSuccess:onConnect,
     onFailure:doFail
   }
@@ -22,9 +22,9 @@
     // Once a connection has been made, make a subscription and send a message.
     console.log("Conectado...");
 	
-    client.subscribe("jomsk@hotmail.com.com/IoT");
+    client.subscribe("licha_05reyes@outlook.com/IoT");
     message = new Paho.MQTT.Message("hola desde la web");
-    message.destinationName = "jomsk@hotmail.com.com/IoT1";
+    message.destinationName = "licha_05reyes@outlook.com/IoT1";
     client.send(message);
 	
   }
