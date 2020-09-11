@@ -8,7 +8,7 @@
   client.onMessageArrived = onMessageArrived;
   var options = {
     useSSL: false,
-    userName: "licha_05reyes@outlook.com.com",
+    userName: "licha_05reyes@outlook.com",
     password: "Galapagos1001",
     onSuccess:onConnect,
     onFailure:doFail
