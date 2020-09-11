@@ -22,7 +22,7 @@ def main():
     mqttc.on_message=on_message
     mqttc.username_pw_set("licha_05reyes@outlook.com","Galapagos1001")
     mqttc.connect("maqiatto.com",1883)
-    mqttc.subscribe("jomsk@hotmail.com/IoT1",0)
+    mqttc.subscribe("licha_05reyes@outlook.com/IoT1",0)
     info=""
     while(1):
         mqttc.loop()
