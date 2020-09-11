@@ -20,35 +20,43 @@ def main():
 
     mqttc=mqtt.Client()
     mqttc.on_message=on_message
-    mqttc.username_pw_set("licha_05reyes@outlook.com","Galapagos1001")
+    mqttc.username_pw_set("jomsk@hotmail.com","Jomsk4all1996")
     mqttc.connect("maqiatto.com",1883)
-    mqttc.subscribe("licha_05reyes@outlook.com/IoT1",0)
+    mqttc.subscribe("jomsk@hotmail.com/IoT1",0)
     info=""
     while(1):
+        cont=1
         mqttc.loop()
         f=open("informacion.txt","a")
         info=str(datetime.now())
         if(GPIO.input(pulsador)==0):
             f.write("- "+info+" se ha presionado el pulsador uno \n")
             f.close()
+            f = open("informacion.txt", "r")
+            f.read()
             GPIO.output(led,1)
-            time.sleep(2)
-            mqttc.publish("licha_05reyes@outlook.com/IoT","on/off")
-            
+            mqttc.publish("jomsk@hotmail.com/IoT","on/off"+str(f.read()))
+            time.sleep(1)
+            mqttc.publish("jomsk@hotmail.com/IoT","off/off")
+            cont=0
+        
         if(GPIO.input(pulsador1)==0):
             
             f.write("- "+info+" se ha presionado el pulsador dos \n")
             f.close()
+            f = open("informacion.txt", "r")
+            f.read()
             GPIO.output(led1,1)
-            time.sleep(2)
-            mqttc.publish("licha_05reyes@outlook.com/IoT","off/on")
-            
-        f = open("informacion.txt", "r")
-        f.read()
+            mqttc.publish("jomsk@hotmail.com/IoT","off/on")
+            time.sleep(1)
+            mqttc.publish("jomsk@hotmail.com/IoT","off/off")
+        
+        
         
         GPIO.output(led,0)
         GPIO.output(led1,0)
-        mqttc.publish("licha_05reyes@outlook.com/IoT","off/off/"+f.read())
+        
+        
         
             
 def on_message(client,obj,msg):
