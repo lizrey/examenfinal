@@ -1,8 +1,9 @@
+  
 // Create a client instance
   //client = new Paho.MQTT.Client("postman.cloudmqtt.com", 14970);
   
   client = new Paho.MQTT.Client("maqiatto.com", 8883, "web_" + parseInt(Math.random() * 100, 10));
-  var variables;
+  var variables="/ / /",informacion;
   // set callback handlers
   client.onConnectionLost = onConnectionLost;
   client.onMessageArrived = onMessageArrived;
@@ -27,11 +28,10 @@
   
   }
 
-
   function doFail(e){
     console.log(e);
 	
-  }
+  } 
 
   // called when the client loses its connection
   function onConnectionLost(responseObject) {
@@ -47,19 +47,20 @@
     console.log("onMessageArrived:"+message.payloadString);
     variables=(message.payloadString).split(("/"));
     if(variables[0]=="on"){
-      le.innerHTML="on";
+      le.innerHTML=variables[0];
     }else{
       le.innerHTML="off";
     }
     if(variables[1]=="on"){
-      l.innerHTML="on";
+      l.innerHTML=variables[1];
     }else{
       l.innerHTML="off";
     }
+    if(variables[2]!=""){
+      informacion=variables[2];
+    }
   }
-
   function mostrard(){
     var dat=document.getElementById("info");
-    dat=variables[2];
+    dat.innerHTML=informacion;
   }
-  
